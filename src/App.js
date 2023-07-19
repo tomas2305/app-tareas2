@@ -1,9 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
 import {
   Container,
   CssBaseline,
-  Grid,
   ThemeProvider,
   Typography,
   createTheme,
@@ -39,9 +37,8 @@ function App() {
     setTareas([...tareas, tarea]);
   }
 
-  function eliminarTarea(event) {
-    const aEliminar = event.target.elements.tarea.value;
-    setTareas(tareas.filter((tarea) => tarea === aEliminar));
+  function eliminarTarea(tareaABorrar) {
+    setTareas(tareas.filter((tarea) => tarea !== tareaABorrar));
   }
 
   return (
@@ -51,10 +48,12 @@ function App() {
         <Typography variant="h3" my={4}>
           App Tareas
         </Typography>
-        <FormularioTareas handleNuevaTarea={agregarNuevaTarea} handleBorrarTarea={eliminarTarea}/>
-          {tareas.map((tarea) => (
-              <Tarea key={uuidv4()}>{tarea}</Tarea>
-          ))}
+        <FormularioTareas handleNuevaTarea={agregarNuevaTarea} />
+        {tareas.map((tarea) => (
+          <Tarea handleBorrarTarea={eliminarTarea} key={uuidv4()}>
+            {tarea}
+          </Tarea>
+        ))}
       </Container>
     </ThemeProvider>
   );

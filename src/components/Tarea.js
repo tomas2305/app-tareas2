@@ -3,6 +3,12 @@ import { Button, Grid, Typography } from "@mui/material";
 import React from "react";
 
 export default function Tarea(props) {
+
+  function handleBorrarTarea(event){
+    const tareaABorrar = props.children;
+    props.handleBorrarTarea(tareaABorrar);
+  }
+
   return (
     <Grid
       container
@@ -18,14 +24,14 @@ export default function Tarea(props) {
         },
       }}
     >
-      <Grid item xs={11} textAlign='left'>
+      <Grid item xs={10} md={11} textAlign='left'>
         <Typography mt={1} variant="h6">
           {" "}
           {props.children}
         </Typography>
       </Grid>
-      <Grid item xs={1}>
-        <Button onClick={props.handleBorrarTarea}>
+      <Grid item xs={2} md={1}>
+        <Button onClick={handleBorrarTarea} >
           <CancelRounded sx={{ fontSize: 30}} />
         </Button>
       </Grid>
